@@ -1,0 +1,7 @@
+{
+  "node_version": "20",
+  "graphs": {
+    "supermarket_ai_agent": "./src/graph/factory.ts:graph"
+  },
+  "env": ".env"
+}

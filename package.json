@@ -1,0 +1,29 @@
+{
+  "name": "supermarket-ai-agent",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.ts",
+  "scripts": {
+    "start": "node --env-file .env src/index.ts",
+    "dev": "node --watch --inspect --env-file .env src/index.ts",
+    "test:e2e:dev": "node --inspect --env-file .env --test --watch tests/**/*e2e.test.ts",
+    "test:e2e": "node --inspect --env-file .env --test tests/**/*e2e.test.ts",
+    "langgraph:serve": "npx @langchain/langgraph-cli dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@langchain/openai": "^1.6.2",
+    "fastify": "^5.12.5",
+    "langchain": "^1.5.15",
+    "zod": "^4.6.5"
+  },
+  "engines": {
+    "node": ">=24.10.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.4"
+  }
+}
