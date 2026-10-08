@@ -1,5 +1,4 @@
 import { z } from "zod/v3";
-import { products } from "../../services/marketService.ts";
 
 export const IntentSchema = z.object({
   intent: z.enum(["findProduct", "unknown"]).describe("The user intent"),
@@ -8,7 +7,7 @@ export const IntentSchema = z.object({
 
 export type IntentData = z.infer<typeof IntentSchema>;
 
-export const getSystemPrompt = (professionals: any[]) => {
+export const getSystemPrompt = (products: any[]) => {
   return JSON.stringify({
     role: "Intent Classifier for Market Products",
     task: "Identify user intent and extract all product-related details",

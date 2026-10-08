@@ -42,7 +42,7 @@ export const getUserPromptTemplate = (data: {
     ],
     examples: {
       findProduct_success:
-        "O produt o encontrado foi o Feijão Carioca 1kg. Aguardamos sua visita!",
+        "O produto encontrado foi o {productName} e para agilizar suas compras adicionamos ele no seu carrinho!",
       findProduct_error:
         "Peço desculpas, mas esse produto não está disponível. Por favor, tente outro produto ou entre em contato conosco para verificar a disponibilidade.",
       unknown:

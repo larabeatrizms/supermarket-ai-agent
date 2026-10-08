@@ -3,7 +3,7 @@ import {
   getUserPromptTemplate,
   IntentSchema,
 } from "../../prompts/v1/identifyIntent.ts";
-import { professionals } from "../../services/appointmentService.ts";
+import { products } from "../../services/marketService.ts";
 import { OpenRouterService } from "../../services/openRouterService.ts";
 import type { GraphState } from "../graph.ts";
 
@@ -13,7 +13,7 @@ export function createIdentifyIntentNode(llmClient: OpenRouterService) {
     const input = state.messages.at(-1)!.text;
 
     try {
-      const systemPrompt = getSystemPrompt(professionals);
+      const systemPrompt = getSystemPrompt(products);
       const userPrompt = getUserPromptTemplate(input);
       const result = await llmClient.generateStructured(
         systemPrompt,

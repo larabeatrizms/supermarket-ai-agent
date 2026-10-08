@@ -16,6 +16,7 @@ export function createMessageGeneratorNode(llmClient: OpenRouterService) {
       const scenario = `${state.intent ?? "unknown"}_${hasSucceeded}`;
       const details = {
         productId: state.productId,
+        productData: state.productData,
         error: state.error,
       };
 
