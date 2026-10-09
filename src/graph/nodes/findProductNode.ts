@@ -24,7 +24,21 @@ export function createFindProductNode(marketService: MarketService) {
         };
       }
 
+      console.log("ProductID: ", validation.data.productId);
+
       const product = marketService.getProduct(validation.data.productId);
+
+      if (!product) {
+        console.log(
+          `❌ Product not found - productId: ${validation.data.productId}`,
+        );
+        return {
+          actionSuccess: false,
+          actionError: "Produto não encontrado, por favor tente novamente.",
+        };
+      }
+
+      marketService.addProductToCart(product);
 
       return {
         ...state,

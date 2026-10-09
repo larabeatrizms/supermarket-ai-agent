@@ -17,6 +17,7 @@ export function createMessageGeneratorNode(llmClient: OpenRouterService) {
       const details = {
         productId: state.productId,
         productData: state.productData,
+        cartData: state.cartData,
         error: state.error,
       };
 

@@ -3,6 +3,7 @@ import { withLangGraph } from "@langchain/langgraph/zod";
 import type { BaseMessage } from "@langchain/core/messages";
 
 import { createFindProductNode } from "./nodes/findProductNode.ts";
+import { createGetCartNode } from "./nodes/getCartNode.ts";
 import { createIdentifyIntentNode } from "./nodes/identifyIntentNode.ts";
 import { createMessageGeneratorNode } from "./nodes/messageGeneratorNode.ts";
 
@@ -13,7 +14,7 @@ import { MarketService } from "../services/marketService.ts";
 const MarketStateAnnotation = z.object({
   messages: withLangGraph(z.custom<BaseMessage[]>(), MessagesZodMeta),
 
-  intent: z.enum(["findProduct", "unknown"]).optional(),
+  intent: z.enum(["getCart", "findProduct", "unknown"]).optional(),
   productId: z.number().optional(),
 
   actionSuccess: z.boolean().optional(),
@@ -36,6 +37,7 @@ export function buildMarketGraph(
   })
     .addNode("identifyIntent", createIdentifyIntentNode(llmClient))
     .addNode("findProduct", createFindProductNode(marketService))
+    .addNode("getCart", createGetCartNode(marketService))
     .addNode("message", createMessageGeneratorNode(llmClient))
 
     // Flow
@@ -54,11 +56,13 @@ export function buildMarketGraph(
       },
       {
         findProduct: "findProduct",
+        getCart: "getCart",
         message: "message",
       },
     )
 
     .addEdge("findProduct", "message")
+    .addEdge("getCart", "message")
     .addEdge("message", END);
 
   return workflow.compile();

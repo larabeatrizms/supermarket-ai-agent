@@ -31,6 +31,8 @@ export const products = [
   },
 ];
 
+const cart: object[] = [];
+
 export class MarketService {
   getProducts() {
     return products;
@@ -46,5 +48,13 @@ export class MarketService {
 
   getProductsByCategory(category: string) {
     return products.filter((product) => product.category === category);
+  }
+
+  addProductToCart(product: any) {
+    cart.push(product);
+  }
+
+  getCart() {
+    return cart;
   }
 }
